@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-typeorm-paginate",
+  "name": "nestjs-typeorm-paginate-transform",
   "author": {
     "name": "Ashleigh Simonelli",
     "email": "ashleighsimonelli@gmail.com",
@@ -62,5 +62,5 @@
     },
     "coverageDirectory": "../coverage"
   },
-  "version": "2.6.0"
+  "version": "2.6.1a"
 }

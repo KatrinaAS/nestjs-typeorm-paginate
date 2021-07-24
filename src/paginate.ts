@@ -114,6 +114,7 @@ function resolveOptions(
   const paginationType =
     options.paginationType || PaginationTypeEnum.LIMIT_AND_OFFSET;
 
+
   return [page, limit, route, paginationType];
 }
 
@@ -158,7 +159,11 @@ async function paginateRepository<T, CustomMetaType = IPaginationMeta>(
     take: limit,
     ...searchOptions,
   });
-
+  if(options.itemTransformer!== undefined && options.itemTransformer!== null) {
+    items.forEach(function(item,index) {
+      this[index] = options.itemTransformer(item);
+    },items);
+  }
   return createPaginationObject<T, CustomMetaType>({
     items,
     totalItems: total,
@@ -182,6 +187,11 @@ async function paginateQueryBuilder<T, CustomMetaType = IPaginationMeta>(
     : queryBuilder.take(limit).skip((page - 1) * limit)
   ).getManyAndCount();
 
+  if(options.itemTransformer!== undefined && options.itemTransformer!== null) {
+    items.forEach(function(item,index) {
+      this[index] = options.itemTransformer(item);
+    },items);
+  }
   return createPaginationObject<T, CustomMetaType>({
     items,
     totalItems: total,

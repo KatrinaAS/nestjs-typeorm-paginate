@@ -31,6 +31,8 @@ export interface IPaginationOptions<CustomMetaType = IPaginationMeta> {
    * Used for changing query method to limit/offset (defaults to take/skip if no argument supplied)
    */
   paginationType?: PaginationTypeEnum;
+
+  itemTransformer?: (input: any) => any;
 }
 
 export interface ObjectLiteral {
